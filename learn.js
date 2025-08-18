@@ -116,4 +116,19 @@ let a = {}, b = {}, c = {}
 console.log(a = b = c = {})
 
 // Prototype
+if (typeof Object.create !== 'function') {
+    Object.create = function (o) {
+        let F = function() {
+            F.prototype = o
+            return new F()
+        }
+    }
+}
+
+let another_stoo = Object.create(stoo)
+
+console.log(another_stoo['first-name'] = 'Hary')
+console.log(another_stoo['first-name'] = 'Junior')
+console.log(another_stoo.nickname = 'Moe')
+
 
