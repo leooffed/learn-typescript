@@ -131,4 +131,121 @@ console.log(another_stoo['first-name'] = 'Hary')
 console.log(another_stoo['first-name'] = 'Junior')
 console.log(another_stoo.nickname = 'Moe')
 
+stoo.profession = 'actor'
+console.log(another_stoo.profession)
 
+// Reflection
+
+console.log(typeof flight.number)
+console.log(typeof flight.status)
+console.log(typeof flight.arrival)
+console.log(flight.manifest)
+
+console.log(typeof flight.toString)
+console.log(typeof flight.constructor)
+
+console.log(flight.hasOwnProperty('number'))
+console.log(flight.hasOwnProperty('constructor'))
+
+// Enumeration
+
+let name
+
+for (name in another_stoo) {
+    if (typeof another_stoo[name] !== 'function') {
+        document.write(name + ": " + another_stoo[name] + "<br>")
+        console.log(name + ": " + another_stoo[name])
+    }
+}
+
+let i
+let properties = [
+    'first-name',
+    'middle-name',
+    'last-name',
+    'profession'
+]
+
+for (i = 0; i < properties.length; i++) {
+    document.write(properties[i] + ": " + another_stoo[properties[i]])
+    console.log(properties[i] + ": " + another_stoo[properties[i]])
+}
+
+
+// Delete
+console.log(another_stoo.nickname)
+
+delete another_stoo.nickname
+console.log(another_stoo.nickname)
+
+// Reduction mondiale (Global Abatement)
+let MyApp = {}
+
+MyApp.stoo = {
+    "first-name": "Jerome",
+    "last-name": "Joe",
+    "nickname": "Niga"
+}
+
+MyApp.flight = {
+    airline: "Oceanic",
+    number: 815,
+    departure: {
+        IATA: "SYD",
+        time: "2003-12-22 14:55",
+        city: "London"
+    },
+    arrival: {
+        IATA: "LAX",
+        time: "2004-09-11 11:03",
+        city: "Los Angeles"
+    },
+    equipement: {
+        model: "Jorimu 838"
+    },
+    status: "Kuse"
+}
+
+
+// Function
+
+ /** Function d'objet */
+
+ // Function Literal
+ let add = function (a, b) {
+    return a + b
+ }
+
+ // Invocation
+  /** Le modele d'invocation de methode */
+  let myObject = {
+    value: 0,
+    increment: function(inc) {
+        this.value += typeof inc === "number" ? inc : 1
+    }
+  }
+
+myObject.increment()
+console.log(myObject.value)
+
+myObject.increment(2)
+console.log(myObject.value)
+
+// Le Modèles d'Invocation de fonction
+let sum = add(3, 4)
+console.log(sum)
+
+
+myObject.double = function() {
+    let that = this
+
+    let helper = function() {
+        that.value = add(that.value, that.value)
+    }
+
+    helper()
+}
+
+myObject.double()
+document.writeln(myObject.value)
+console.log(myObject.value)
