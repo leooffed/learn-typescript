@@ -249,3 +249,86 @@ myObject.double = function() {
 myObject.double()
 document.writeln(myObject.value)
 console.log(myObject.value)
+
+// Modele d'Invocation du constructeur
+
+/**
+ * Create a constructor function called fun
+ * It makes an object with a status property
+ */
+
+let Fun = function (string){
+    this.status = string
+}
+
+// Give all instance of Fun a public method
+Fun.prototype.get_status = function() {
+    return this.status
+}
+
+// Make an instance of Fun
+let MyFun = new Fun("confused")
+
+document.writeln(MyFun.get_status())
+console.log(MyFun.get_status())
+
+// Modèle d'invocation Apply
+
+// Make an Array of 2 number and add them
+let array = [2, 3]
+let sums = add.apply(null, array)
+
+// Make an object with a status member.
+
+let statusObject = {
+    status: 'A-OK'
+}
+
+/**
+ * StatusObject does not inherit from Fun.prototype,
+ * but we can invoke the get_status method on 
+ * statusObject even though statusObject does not have
+ * a get_status method.
+ */
+
+let statuio = Fun.prototype.get_status.apply(statusObject)
+console.log(statuio)
+
+// Arguments
+
+/**
+ * Make a function that adds a lot of stuff.
+ * 
+ * Note that defining the variable sum inside of
+ * the function does not interfere with the sum
+ * defined outside of the function. The function
+ * only sees the inner one.
+ */
+
+let summer = function () {
+    let i, sum = 0
+    for (i = 0; i < arguments.length; i += 1) {
+        sum += arguments[i]
+    }
+    return sum
+}
+
+console.log(summer(4, 8, 15, 16, 23, 42)) // 108
+
+
+// Return
+
+// Exception
+let adding = function (a, b) {
+    if (typeof a !== 'number' || typeof b !== 'number') {
+        throw {
+            name: 'TypeError',
+            message: 'add needs numbers'
+        }
+    }
+    return a + b
+}
+
+console.log(adding("jei"))
+
+console.log("jeu")
